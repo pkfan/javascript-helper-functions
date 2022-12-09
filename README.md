@@ -4,6 +4,7 @@ Most commonly used helper functions in javascript projects.
 ## List of Functions
 * flipObject( object )
 * normalized( objects, id )
+* -------------------------------
 * isNumber( number )
 * isString( string )
 * isObject( object )
