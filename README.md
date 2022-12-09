@@ -1,5 +1,6 @@
 # javascript-helper-functions
 
+#### isNumber( number )
 Arguments  
 array (Array): The array to compact.  
 Returns  
