@@ -2,6 +2,8 @@
 Most commonly used helper functions in javascript projects.
 
 ## List of Functions
+* flipObject( object )
+* normalized( objects, id )
 * isNumber( number )
 * isString( string )
 * isObject( object )
@@ -19,8 +21,112 @@ Most commonly used helper functions in javascript projects.
 * isUndefined( undefined )
 * isNegativeZero( -0 )
 * isEmpty( String | Object | Array )
-* flipObject( object )
 
+
+
+### flipObject( object )
+```javascript
+/**
+ * flip an object i.e. transform { key : value} into {value : key}
+ *
+ * good for small data set only. 
+ *
+ * return new Object without mutate original object
+ *
+ * this function can throw error, if argument is not object 
+ * 
+ * remove other types (i.e, Array, Object, Function etc) from value of { key : value }
+ *
+ ****
+ * @has dependancy to other functions : [ isObject(), isString(), isNumber() ]
+ *
+ * @parameter (input)
+ *
+ * @return flip object as { value : key } pairs
+ * 
+**/
+
+  function flipObject ( input ) {
+
+    if (! isObject ( input ) ) {
+      throw new TypeError ( "given argument is not type of Object" );
+    }
+    
+    const flipObj = {}
+  
+    for ( [ key, value ] of Object.entries (input) ) { 
+      if ( isString ( value ) || isNumber ( value) ) {
+          flipObj[ value ] = key;
+      }
+    }
+  
+    return flipObj;
+  }
+```
+
+### normalized(objects, id='uid')
+Convert Json format Array into object to increase performance  
+e.g. [ { }, { } ] into {ids: [], entities: {}}  
+
+access of Array item is O(N)  
+access of Object item is O(1)
+
+Data Array format from server is:  
+  [
+    {id: "user1", firstName, lastName},
+    {id: "user2", firstName, lastName},
+    {id: "user3", firstName, lastName},
+  ]  
+  
+Data after Nomrlized format is:
+  {
+    ids: ["user1", "user2", "user3"],
+    entities: {
+      "user1": {id: "user1", firstName, lastName},
+      "user2": {id: "user2", firstName, lastName},
+      "user3": {id: "user3", firstName, lastName},
+    }
+  }
+  
+  
+```javascript
+/**
+ * @has dependancy to other functions : [ none ]
+ *
+ * @parameter (objects, id)
+ *
+ * @return {ids: [], entities: {}}
+ * 
+**/
+function normalized (objects = [], id = "id") {
+    
+    if (! (id in objects[0]) ) {
+        throw new Error( `cannot find (${id}) field in Object.
+
+            Usage Example:
+
+              const data = [
+                {uid:"user1", name: "Pkfan Amir"},
+                {uid:"user2", name: "Sir Kyle Simpson"}
+              ];
+
+              normalized(data, id='uid')
+        `); 
+    }    
+
+
+    const ids = [];
+    const entities = {};
+
+    objects.forEach( object => {
+       ids.push(object[id]);
+       
+       entities[object[id]] = object;
+    });
+
+    return {ids, entities};
+}
+```
 
 ### isNumber( number )
 ```javascript
@@ -456,42 +562,3 @@ function isEmpty ( input ) {
 }
 ```
 
-### flipObject( object )
-```javascript
-/**
- * flip an object i.e. transform { key : value} into {value : key}
- *
- * good for small data set only. 
- *
- * return new Object without mutate original object
- *
- * this function can throw error, if argument is not object 
- * 
- * remove other types (i.e, Array, Object, Function etc) from value of { key : value }
- *
- ****
- * @has dependancy to other functions : [ isObject(), isString(), isNumber() ]
- *
- * @parameter (input)
- *
- * @return flip object as { value : key } pairs
- * 
-**/
-
-  function flipObject ( input ) {
-
-    if (! isObject ( input ) ) {
-      throw new TypeError ( "given argument is not type of Object" );
-    }
-    
-    const flipObj = {}
-  
-    for ( [ key, value ] of Object.entries (input) ) { 
-      if ( isString ( value ) || isNumber ( value) ) {
-          flipObj[ value ] = key;
-      }
-    }
-  
-    return flipObj;
-  }
-```
