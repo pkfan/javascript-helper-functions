@@ -1,10 +1,24 @@
 # javascript-helper-functions
 Most commonly used helper functions in javascript projects.
 
-## Table of Contents
+## List of Functions
 * isNumber( number )
 * isString( string )
 * isObject( object )
+* isFunction( function )
+* isArray( array )
+* isBoolean( boolean )
+* isDate( new Date() )
+* isRegExp( /re/ | new RegExp() )
+* isSymbol( Symbol() )
+* isMap( new Map() )
+* isWeakMap( new WeakMap() )
+* isSet( new Set() )
+* isWeakSet( new WeakSet() )
+* isNull( null )
+* isUndefined( undefined )
+* isNegativeZero( -0 )
+* isEmpty( String | Object | Array )
 * flipObject( object )
 
 
@@ -266,7 +280,7 @@ function isMap ( input ) {
 }
 ```
 
-### isWeakMap( new WeakMap )
+### isWeakMap( new WeakMap() )
 ```javascript
 /**
  * check if given argument is type of WeakMap or not
