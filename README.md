@@ -65,6 +65,12 @@ Most commonly used helper functions in javascript projects.
 ```
 
 ### normalized(objects, id='uid')
+
+   
+  
+```javascript
+/**
+*
 Convert Json format Array into object to increase performance  
 e.g. [ { }, { } ] into {ids: [], entities: {}}  
   
@@ -86,11 +92,9 @@ Data after Nomrlized format is:
       "user2": {id: "user2", firstName, lastName},  
       "user3": {id: "user3", firstName, lastName},  
     }  
-  }  
-   
-  
-```javascript
-/**
+  }
+ *
+ ****
  * @has dependancy to other functions : [ none ]
  *
  * @parameter (objects, id)
