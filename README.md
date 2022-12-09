@@ -67,27 +67,27 @@ Most commonly used helper functions in javascript projects.
 ### normalized(objects, id='uid')
 Convert Json format Array into object to increase performance  
 e.g. [ { }, { } ] into {ids: [], entities: {}}  
-
+  
 access of Array item is O(N)  
 access of Object item is O(1)
-
+  
 Data Array format from server is:  
-  [
-    {id: "user1", firstName, lastName},
-    {id: "user2", firstName, lastName},
-    {id: "user3", firstName, lastName},
-  ]  
-  
-Data after Nomrlized format is:
-  {
-    ids: ["user1", "user2", "user3"],
-    entities: {
-      "user1": {id: "user1", firstName, lastName},
-      "user2": {id: "user2", firstName, lastName},
-      "user3": {id: "user3", firstName, lastName},
-    }
-  }
-  
+  [  
+    {id: "user1", firstName, lastName},  
+    {id: "user2", firstName, lastName},  
+    {id: "user3", firstName, lastName},  
+  ]    
+    
+Data after Nomrlized format is:  
+  {  
+    ids: ["user1", "user2", "user3"],  
+    entities: {  
+      "user1": {id: "user1", firstName, lastName},  
+      "user2": {id: "user2", firstName, lastName},  
+      "user3": {id: "user3", firstName, lastName},  
+    }  
+  }  
+   
   
 ```javascript
 /**
