@@ -1,5 +1,6 @@
 # javascript-helper-functions
 
+### isNumber(number)
 ```javascript
 /**
  * check if given argument is number or not
@@ -25,6 +26,7 @@ function isNumber (input) {
 }
 ```
 
+### isString(string)
 ```javascript
 /**
  * check if given argument is string or not
