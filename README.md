@@ -1,4 +1,12 @@
 # javascript-helper-functions
+Most commonly used helper functions in javascript projects.
+
+## Table of Contents
+* isNumber( number )
+* isString( string )
+* isObject( object )
+* flip( object )
+
 
 ### isNumber( number )
 ```javascript
