@@ -3,6 +3,7 @@ Most commonly used helper functions in javascript projects.
 
 ## List of Functions
 * flipObject( object )
+* flipArray( array )
 * normalized({ objects: data, id: "uid" })
 -------------------------------
 * isNumber( number )
@@ -34,7 +35,7 @@ Most commonly used helper functions in javascript projects.
  *
  * return new Object without mutate original object
  *
- * this function can throw error, if argument is not object 
+ * this function can throw error, if argument is not type of Object 
  * 
  * remove other types (i.e, Array, Object, Function etc) from value of { key : value }
  *
@@ -65,6 +66,43 @@ Most commonly used helper functions in javascript projects.
   }
 ```
 
+### flipArray( array )
+```javascript
+/**
+ * flip an Array i.e. transform ["a","b","c"] into {"a":0, "b":1, "c":2}
+ *
+ * this function can throw error, if argument is not type of Array 
+ * 
+ * remove other types (i.e, Array, Object, Function etc) from value of { key : value }
+ * add only types (string or number) as keys of object from array
+ *
+ ****
+ * @has dependancy to other functions : [ isArray(), isString(), isNumber() ]
+ *
+ * @parameter (array)
+ *
+ * @return flip object as { value : key } pairs
+ * 
+**/
+function flipArray( array ) {
+  if (! isArray(array) ) {
+    throw new TypeError("argument is not an array, flipArray( array ) ");
+  }
+
+  const flipArr = {};
+
+  array.forEach( ( element, index ) => {
+    if ( isString( element ) ) {
+      flipArr[ element.trim() ] = index;
+    }
+    else if ( isNumber( element ) ) {
+      flipArr[ element] = index;
+    }
+  });
+
+  return flipArr;
+}
+```
 ### normalized({ objects: data, id:'uid' })
 
 ```javascript
@@ -134,6 +172,54 @@ function normalized ({ objects = [], id = "id" }) {
     });
 
     return {ids, entities};
+}
+```
+### countObject({ object: data, excludeType:['undefined','null','function',"object", "array", "string","number"] })
+
+```javascript
+/**
+ *
+ * @has dependancy to other functions : [ flipArray(), isObject(), isNull(), isUndefined(), isArray() ]
+ *
+ * @parameter ({ object, excludeType = [] })
+ *
+ * @return Number (integer)
+ * 
+**/
+
+function countObject ({ object, excludeType = [] }) {
+
+  if (! isObject( object ) ) {
+    throw new TypeError( "first argument is not an 'object' type" );
+  }
+
+  const objectValues = Object.values(object);
+
+  if ( excludeType.length <= 0 ) {
+    return objectValues.length;
+  }
+  
+  const excludeTypeObj = flipArray( excludeType );
+
+  const finalValues = objectValues.filter( (value) => {
+    try {
+      return (! (value.constructor.name.toLowerCase() in excludeTypeObj) );
+    }
+    catch ( error ) {
+      if ( 
+        ( "null" in excludeTypeObj && isNull( value ) )
+        || ( "undefined" in excludeTypeObj && isUndefined( value ) )
+      ) {
+        return false;
+      }
+      else {
+        return true;
+      };
+
+    }
+  });
+
+  return finalValues.length;
 }
 ```
 
