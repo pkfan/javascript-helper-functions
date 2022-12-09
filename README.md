@@ -39,12 +39,12 @@ Most commonly used helper functions in javascript projects.
 **/
 
 function isNumber ( input ) {
-  try {
-    return input.constructor.name == "Number";
-  }
-  catch ( error ) {
-    return false;
-  }
+    try {
+      return (! isNaN( input ) ) &&  input.constructor.name == "Number";
+    }
+    catch ( error ) {
+      return false;
+    }
 }
 ```
 
