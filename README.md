@@ -65,10 +65,8 @@ Most commonly used helper functions in javascript projects.
   }
 ```
 
-### normalized(objects, id='uid')
+### normalized({ objects: data, id:'uid' })
 
-   
-  
 ```javascript
 /**
 *
@@ -103,7 +101,7 @@ Data after Nomrlized format is:
  * @return {ids: [], entities: {}}
  * 
 **/
-function normalized (objects = [], id = "id") {
+function normalized ({ objects = [], id = "id" }) {
     
     if (! (id in objects[0]) ) {
         throw new Error( `cannot find (${id}) field in Object.
