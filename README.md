@@ -95,7 +95,7 @@ function isObject ( input ) {
  *
  * @parameter (input)
  *
- * @return true/false
+ * @return flip object as { value : key } pairs
  * 
 **/
 
