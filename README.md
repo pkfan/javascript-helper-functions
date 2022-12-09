@@ -94,7 +94,7 @@ Data after Nomrlized format is:
   }
  *
  ****
- * @has dependancy to other functions : [ none ]
+ * @has dependancy to other functions : [ isObject(), isEmpty(),  ]
  *
  * @parameter (objects, id)
  *
@@ -103,7 +103,13 @@ Data after Nomrlized format is:
 **/
 function normalized ({ objects = [], id = "id" }) {
     
-    if (! (id in objects[0]) ) {
+    if ( isEmpty( objects ) ) {
+        return {ids: [], entities: {}};
+    }
+    else if (! isObject( objects[0] )){
+        throw new TypeError( "Cannot find objects in Array list" );
+    }
+    else if ((! (id in objects[0])) ) {
         throw new Error( `cannot find (${id}) field in Object.
 
             Usage Example:
@@ -113,7 +119,7 @@ function normalized ({ objects = [], id = "id" }) {
                 {uid:"user2", name: "Sir Kyle Simpson"}
               ];
 
-              normalized(data, id='uid')
+              normalized({ objects: data, id: 'uid' })
         `); 
     }    
 
