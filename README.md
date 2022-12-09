@@ -6,8 +6,8 @@ Most commonly used helper functions in javascript projects.
 * flipArray( array )
 * normalized({ objects: data, id: "uid" })
 * countObject({   
-    object: data,  
-    excludeType:['undefined','null','function',"object", "array", "string","number"]  
+ &nbsp;&nbsp;&nbsp;  object: data,  
+ &nbsp;&nbsp;&nbsp;   excludeType:['undefined','null','function',"object", "array", "string","number"]  
 })  
 -------------------------------
 * isNumber( number )
