@@ -1,12 +1,28 @@
 # javascript-helper-functions
 
-#### isNumber( number )
-Arguments  
-array (Array): The array to compact.  
-Returns  
-(Array): Returns the new array of filtered values.  
-Example  
-_.compact([0, 1, false, 2, '', 3]);  
-// => [1, 2, 3]  
+```javascript
+/**
+ * check if given argument is number or not
+ * 
+ * this function cannot throw any exception, only return true/false
+ *
+ ****
+ * @has depency to other functions : [none]
+ *
+ * @parameter input
+ *
+ * @retrun true/false
+ * 
+**/
+
+function isNumber (input) {
+  try {
+    return input.constructor.name == "Number";
+  }
+  catch (error) {
+    return false;
+  }
+}
+```
 
 
