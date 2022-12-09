@@ -3,7 +3,7 @@ Most commonly used helper functions in javascript projects.
 
 ## List of Functions
 * flipObject( object )
-* normalized( objects, id )
+* normalized({ objects: data, id: "uid" })
 -------------------------------
 * isNumber( number )
 * isString( string )
