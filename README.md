@@ -5,7 +5,10 @@ Most commonly used helper functions in javascript projects.
 * flipObject( object )
 * flipArray( array )
 * normalized({ objects: data, id: "uid" })
-* countObject({ object: data, excludeType:['undefined','null','function',"object", "array", "string","number"] })
+* countObject({   
+    object: data,  
+    excludeType:['undefined','null','function',"object", "array", "string","number"]  
+})  
 -------------------------------
 * isNumber( number )
 * isString( string )
