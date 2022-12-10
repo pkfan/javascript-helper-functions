@@ -11,6 +11,8 @@ Most commonly used helper functions in javascript projects.
 })  
 -------------------------------
 * isNumber( number )
+* isBigInt( 15464n )
+* isInteger( 4897 | 749789n )
 * isString( string )
 * isObject( object )
 * isFunction( function )
@@ -250,6 +252,60 @@ function isNumber ( input ) {
     catch ( error ) {
       return false;
     }
+}
+```
+
+### isBigInt( 126464n )
+```javascript
+/**
+ * check if given argument is type of BigInt or not
+ * 
+ * this function cannot throw any exception, only return true/false
+ *
+ ****
+ * @has dependancy to other functions : [none]
+ *
+ * @parameter (input)
+ *
+ * @return true/false
+ * 
+**/
+
+function isBigInt ( input ) {
+    try {
+        return input.constructor.name == "BigInt";
+    }
+      catch ( error ) {
+        return false;
+    }
+}
+```
+
+### isInteger(456465 | 126464n )
+```javascript
+/**
+ * check if given argument is type of (Number | BigInt) or not
+ * 
+ * this function cannot throw any exception, only return true/false
+ *
+ ****
+ * @has dependancy to other functions : [isBigInt(), isNumber()]
+ *
+ * @parameter (input)
+ *
+ * @return true/false
+ * 
+**/
+
+function isInteger ( number ) {
+    if ( isBigInt( number ) ) {
+        return true;
+    } 
+    else if (! isNumber(number) ) {
+        throw new TypeError( "argument must be a number, isNumber( number )" );
+    };
+
+     return Number().constructor.isInteger(number);
 }
 ```
 
@@ -650,10 +706,10 @@ function isEmpty ( input ) {
     return input.trim()[0] == undefined;
   }
   if ( isArray( input ) ) {
-    return input.length <= 0;
+    return input.length === 0;
   }
   else if ( isObject(input ) ) {
-    return Object.keys(input).length <= 0;
+    return Object.keys(input).length === 0;
   }
   else {
     throw new TypeError("only supported types are (String | Object | Array) for isEmpty() function");
